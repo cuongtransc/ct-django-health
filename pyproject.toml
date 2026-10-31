@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ct-django-health"
+version = "0.1.0"
+description = "Kubernetes-style /livez and /readyz for Django: public liveness, internal-or-staff readiness, no raw errors."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+dependencies = ["django>=6.0,<6.1"]
+
+[project.optional-dependencies]
+redis = ["redis>=5"]
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-django>=4.9", "ruff>=0.15", "redis>=5"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["ct_django_health"]
+
+[tool.uv]
+exclude-newer = "14 days"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-exclude = ["docs"]
+
+[tool.ruff.format]
+quote-style = "single"
