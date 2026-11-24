@@ -50,4 +50,4 @@ Docker healthcheck: `python -c "import urllib.request; urllib.request.urlopen('h
 
 ## Development
 
-`mise run ci` (ruff, pytest, gitleaks).
+`mise run ci` (ruff, pytest, betterleaks).
